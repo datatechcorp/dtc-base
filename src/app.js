@@ -1,5 +1,5 @@
 const express = require('express');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+// const { createProxyMiddleware } = require('http-proxy-middleware');
 const helmet = require('helmet');
 const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -15,9 +15,9 @@ const routes = require('./routes/v1');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
 
-const fullNodeHost = 'http://localhost:16667';
-const solidityNodeHost = 'http://localhost:16668';
-const eventServerHost = 'http://localhost:16670';
+// const fullNodeHost = 'http://localhost:16667';
+// const solidityNodeHost = 'http://localhost:16668';
+// const eventServerHost = 'http://localhost:16670';
 
 const app = express();
 
@@ -59,36 +59,36 @@ if (config.env === 'production') {
 app.use('/v1', routes);
 
 // proxy
-app.use(
-  '/node',
-  createProxyMiddleware({
-    target: fullNodeHost,
-    changeOrigin: true,
-    pathRewrite: {
-      [`^/node`]: '',
-    },
-  })
-);
-app.use(
-  '/solidity',
-  createProxyMiddleware({
-    target: solidityNodeHost,
-    changeOrigin: true,
-    pathRewrite: {
-      [`^/solidity`]: '',
-    },
-  })
-);
-app.use(
-  '/event',
-  createProxyMiddleware({
-    target: eventServerHost,
-    changeOrigin: true,
-    pathRewrite: {
-      [`^/event`]: '',
-    },
-  })
-);
+// app.use(
+//   '/node',
+//   createProxyMiddleware({
+//     target: fullNodeHost,
+//     changeOrigin: true,
+//     pathRewrite: {
+//       [`^/node`]: '',
+//     },
+//   })
+// );
+// app.use(
+//   '/solidity',
+//   createProxyMiddleware({
+//     target: solidityNodeHost,
+//     changeOrigin: true,
+//     pathRewrite: {
+//       [`^/solidity`]: '',
+//     },
+//   })
+// );
+// app.use(
+//   '/event',
+//   createProxyMiddleware({
+//     target: eventServerHost,
+//     changeOrigin: true,
+//     pathRewrite: {
+//       [`^/event`]: '',
+//     },
+//   })
+// );
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
