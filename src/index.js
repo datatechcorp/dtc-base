@@ -2,6 +2,8 @@
 const app = require('./app');
 const config = require('./config/config');
 const logger = require('./config/logger');
+const autoGenTxBot = require('./jobs/autogentx.bot');
+const deleteDataJob = require('./jobs/eventlog.deleteData.job');
 
 // let server;
 // mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
@@ -13,6 +15,10 @@ const logger = require('./config/logger');
 
 const server = app.listen(config.port, () => {
   logger.info(`Listening to port ${config.port}`);
+  logger.info('Starting AutoGenTx Bot');
+  autoGenTxBot.start();
+  logger.info('Starting CleanData Job');
+  deleteDataJob.start();
 });
 
 const exitHandler = () => {
