@@ -7,7 +7,7 @@ const deleteDataJob = {
   task: cron.schedule(
     '* * */24 * * *',
     () => {
-      exec('@scripts/eventlog.deleteData.sh', (error, stdout, stderr) => {
+      exec('../scripts/eventlog.deleteData.sh', (error, stdout, stderr) => {
         if (error) {
           logger.error(`[JOB] Clean 'eventlog' Data >> Error Message: ${error.message}`);
           return;
