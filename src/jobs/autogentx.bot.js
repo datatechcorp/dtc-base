@@ -47,7 +47,7 @@ const autoGenTxBot = {
       if (ranIdx !== i) {
         const from = users[ranIdx];
         const to = users[users.length - 1 - ranIdx];
-        const amount = Math.floor(Math.random() * 1e3);
+        const amount = Math.floor(Math.random() * 1e3) || 132;
         const sdk = new DtcSdk(fullNodeHost, solidityNodeHost, eventServerHost, from.privateKey);
         try {
           await sdk.dtc.sendTransaction(to.address, amount, {});
