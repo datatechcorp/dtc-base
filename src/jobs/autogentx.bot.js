@@ -1,10 +1,11 @@
 const DtcSdk = require('dtc-node-sdk');
 const crypto = require('crypto');
+const config = require('../config/config');
 const logger = require('../config/logger');
 
-const fullNodeHost = 'http://localhost:16667';
-const solidityNodeHost = 'http://localhost:16668';
-const eventServerHost = 'http://localhost:16670';
+const {
+  blockchain: { fullNodeHost, solidityNodeHost, eventServerHost },
+} = config;
 const MAX_TIME_OUT = 10;
 const users = require('../static/users.json');
 

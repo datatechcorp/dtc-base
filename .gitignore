@@ -12,4 +12,4 @@ yarn-error.log
 coverage
 src/static
 src/scripts
-deploy.sh
+deploy

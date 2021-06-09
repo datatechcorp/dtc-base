@@ -23,6 +23,9 @@ const envVarsSchema = Joi.object()
     SMTP_USERNAME: Joi.string().description('username for email server'),
     SMTP_PASSWORD: Joi.string().description('password for email server'),
     EMAIL_FROM: Joi.string().description('the from field in the emails sent by the app'),
+    FULL_NODE_HOST: Joi.string().description('blockchain full node api server'),
+    SOLIDITY_NODE_HOST: Joi.string().description('blockchain solidity node api server'),
+    EVENT_SERVER_HOST: Joi.string().description('blockchain event log api server'),
   })
   .unknown();
 
@@ -38,9 +41,10 @@ module.exports = {
   mongoose: {
     url: envVars.MONGODB_URL + (envVars.NODE_ENV === 'test' ? '-test' : ''),
     options: {
-      useCreateIndex: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
     },
   },
   jwt: {
@@ -60,5 +64,10 @@ module.exports = {
       },
     },
     from: envVars.EMAIL_FROM,
+  },
+  blockchain: {
+    fullNodeHost: envVars.FULL_NODE_HOST,
+    solidityNodeHost: envVars.SOLIDITY_NODE_HOST,
+    eventServerHost: envVars.EVENT_SERVER_HOST,
   },
 };
