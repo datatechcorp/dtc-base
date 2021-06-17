@@ -6,3 +6,5 @@ const { accValidation } = require('../../validations');
 const router = express.Router();
 
 router.route('/').get(validate(accValidation.getAccByAddress), accController.getAccByAddress);
+
+module.exports = router;
