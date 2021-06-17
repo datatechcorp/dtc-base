@@ -14,10 +14,11 @@ const migrate = async () => {
     if (setting.version === 1) {
       await migrateToVersion1();
       await createSetting('version', setting.version);
-    } else {
-      if (version < 2) {
-        await migrateToVersion2();
-      }
+    }
+    if (version < 2) {
+      await migrateToVersion2();
+    }
+    if (setting.version !== 1) {
       await updateSettingPair('version', setting.version);
     }
   }
