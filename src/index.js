@@ -8,6 +8,7 @@ const { migrate } = require('./migrations');
 
 let server;
 mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
+  logger.info('\n');
   logger.info('=================');
   logger.info('=    dtc-base   =');
   logger.info('=================');

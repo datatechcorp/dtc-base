@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const { User } = require('../models');
-const ApiError = require('../utils/ApiError');
+const { ApiError } = require('../utils');
 
 /**
  * Create a user
@@ -65,6 +65,23 @@ const updateUserById = async (userId, updateBody) => {
   await user.save();
   return user;
 };
+
+// /**
+//  * Update user KYC by id
+//  * @param {ObjectId} userId
+//  * @param {Object} information
+//  * @returns {Promise<User>}
+//  */
+// const updateUserKYCById = async (userId, information) => {
+//   const user = await getUserById(userId);
+//   if (!user) {
+//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+//   }
+//   const {} = information;
+//   Object.assign(user, updateBody);
+//   await user.save();
+//   return user;
+// };
 
 /**
  * Delete user by id

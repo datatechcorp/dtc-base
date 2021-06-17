@@ -3,6 +3,8 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
+const { modelList } = require('../config/database');
+// const { identityTypes, kycImgStatus } = require('../config/kyc');
 
 const userSchema = mongoose.Schema(
   {
@@ -44,6 +46,57 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    avatar: {
+      type: String,
+      trim: true,
+    },
+    accounts: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Account',
+      },
+    ],
+    // firstname: {
+    //   type: String,
+    //   trim: true,
+    // },
+    // lastname: {
+    //   type: String,
+    //   trim: true,
+    // },
+    // birthday: {
+    //   type: String,
+    //   trim: true,
+    // },
+    // address: {
+    //   type: String,
+    //   trim: true,
+    // },
+    // identity_type: {
+    //   type: String,
+    //   enum: identityTypes,
+    //   default: 'national_identity_card',
+    // },
+    // identity_front_img: {
+    //   type: String,
+    //   trim: true,
+    // },
+    // identity_back_img: {
+    //   type: String,
+    //   trim: true,
+    // },
+    // selfie_img: {
+    //   type: String,
+    //   trim: true,
+    // },
+    // kycStatus: {
+    //   type: {
+    //     verified: Boolean,
+    //     frontImgStatus: kycImgStatus,
+    //     backImgStatus: kycImgStatus,
+    //     selfieImgStatus: kycImgStatus,
+    //   },
+    // },
   },
   {
     timestamps: true,
@@ -86,6 +139,6 @@ userSchema.pre('save', async function (next) {
 /**
  * @typedef User
  */
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model(modelList.User, userSchema, modelList.User);
 
 module.exports = User;

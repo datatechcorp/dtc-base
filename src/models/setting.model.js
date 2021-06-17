@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
+const { modelList } = require('../config/database');
 const { toJSON } = require('./plugins');
 
 const settingSchema = mongoose.Schema(
   {
     key: {
       type: String,
-      require: true,
+      required: true,
       index: true,
     },
     value: {
       type: String,
-      require: true,
+      required: true,
     },
   },
   {
@@ -24,6 +25,6 @@ settingSchema.plugin(toJSON);
 /**
  * @typedef Setting
  */
-const Setting = mongoose.model('Setting', settingSchema);
+const Setting = mongoose.model(modelList.Setting, settingSchema, modelList.Setting);
 
 module.exports = Setting;

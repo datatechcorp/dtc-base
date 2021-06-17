@@ -26,6 +26,9 @@ const envVarsSchema = Joi.object()
     FULL_NODE_HOST: Joi.string().description('blockchain full node api server'),
     SOLIDITY_NODE_HOST: Joi.string().description('blockchain solidity node api server'),
     EVENT_SERVER_HOST: Joi.string().description('blockchain event log api server'),
+    ADMIN_NAME: Joi.string().description('name for administrator'),
+    ADMIN_PASSWORD: Joi.string().description('password for administrator'),
+    ADMIN_EMAIL: Joi.string().description('password for administrator'),
   })
   .unknown();
 
@@ -50,6 +53,7 @@ module.exports = {
   jwt: {
     secret: envVars.JWT_SECRET,
     accessExpirationMinutes: envVars.JWT_ACCESS_EXPIRATION_MINUTES,
+    sessionRefreshExpirationHours: envVars.JWT_SESSION_REFRESH_EXPIRATION_HOURS,
     refreshExpirationDays: envVars.JWT_REFRESH_EXPIRATION_DAYS,
     resetPasswordExpirationMinutes: envVars.JWT_RESET_PASSWORD_EXPIRATION_MINUTES,
     verifyEmailExpirationMinutes: envVars.JWT_VERIFY_EMAIL_EXPIRATION_MINUTES,
@@ -69,5 +73,10 @@ module.exports = {
     fullNodeHost: envVars.FULL_NODE_HOST,
     solidityNodeHost: envVars.SOLIDITY_NODE_HOST,
     eventServerHost: envVars.EVENT_SERVER_HOST,
+  },
+  admin: {
+    name: envVars.ADMIN_NAME,
+    password: envVars.ADMIN_PASSWORD,
+    email: envVars.ADMIN_EMAIL,
   },
 };
