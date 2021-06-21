@@ -1,5 +1,6 @@
 // eslint-disable-next-line security/detect-child-process
 const { exec } = require('child_process');
+const path = require('path');
 const cron = require('node-cron');
 const logger = require('../config/logger');
 
@@ -7,7 +8,8 @@ const deleteDataJob = {
   task: cron.schedule(
     '* * */24 * * *',
     () => {
-      exec('../scripts/eventlog.deleteData.sh', (error, stdout, stderr) => {
+      const shellPath = path.join(__dirname, '../scripts/eventlog.deleteData.sh');
+      exec(`sh ${shellPath}`, (error, stdout, stderr) => {
         if (error) {
           logger.error(`[JOB] Clean 'eventlog' Data >> Error Message: ${error.message}`);
           return;
