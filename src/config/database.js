@@ -3,7 +3,6 @@ const modelList = {
   Token: 'Tokens',
   Account: 'Accounts',
   Contract: 'Contracts',
-  SocialMedia: 'SocialMedias',
   Setting: 'Settings',
 };
 

@@ -73,16 +73,11 @@ const contractSchema = mongoose.Schema(
     },
     links: {
       type: {
-        ids: [
-          {
-            type: mongoose.SchemaTypes.ObjectId,
-            ref: 'SocialMedia',
-          },
-        ],
+        platforms: [{ type: String }],
         entries: {
           type: Object,
           default: {
-            // [_id]: [link,link, ...]
+            // [platform]: [link,link, ...]
           },
         },
       },

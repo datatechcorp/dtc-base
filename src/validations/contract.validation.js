@@ -42,7 +42,7 @@ const createContract = {
     github: Joi.string(),
     whitepaper: Joi.string(),
     links: Joi.object().keys({
-      ids: Joi.array().items(Joi.custom(objectId)),
+      platforms: Joi.array().items(Joi.string()),
       entries: Joi.object(),
     }),
     signature: Joi.string().required(),
@@ -59,7 +59,7 @@ const updateContractInfo = {
     github: Joi.string(),
     whitepaper: Joi.string(),
     links: Joi.object().keys({
-      ids: Joi.array().items(Joi.custom(objectId)),
+      platforms: Joi.array().items(Joi.string()),
       entries: Joi.object(),
     }),
     signature: Joi.string(),
@@ -79,7 +79,7 @@ const updateContract = {
     github: Joi.string(),
     whitepaper: Joi.string(),
     links: Joi.object().keys({
-      ids: Joi.array().items(Joi.custom(objectId)),
+      platforms: Joi.array().items(Joi.string()),
       entries: Joi.object(),
     }),
   }),
