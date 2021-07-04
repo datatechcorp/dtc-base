@@ -13,13 +13,13 @@ const createContract = async (contrBody) => {
   if (await Contract.isContrAddressTaken(contrBody.contrAddress)) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Contract already verified');
   }
-  const sdk = await new DtcSdk(
+  const sdk = new DtcSdk(
     fullNodeHost,
     solidityNodeHost,
     eventServerHost,
     crypto.createHash('sha256').update(Math.random().toString()).digest().toString('hex')
   );
-  const deployedContr = await sdk.contract.at(contrBody.contrAddress);
+  const deployedContr = await sdk.contract().at(contrBody.contrAddress);
   const hexMessage = sdk.toHex(contrBody.contrAddress + deployedContr.originAddress);
   if (!(await sdk.dtc.verifyMessage(hexMessage, contrBody.signature, contrBody.contrCreator))) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid signature');

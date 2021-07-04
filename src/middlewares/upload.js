@@ -49,13 +49,13 @@ const publicStorage = multer.diskStorage({
     }
   },
   filename(req, file, cb) {
-    const filename = `${new Date().getTime()}.${path.extname(file.originalname)}.${file.mimetype.split('/')[1]}`;
+    const filename = `${new Date().getTime()}.${file.originalname}.${file.mimetype.split('/')[1]}`;
     cb(null, filename);
   },
 });
 
 const fileFilter = function (req, file, cb) {
-  const allowedMimes = ['image/jpeg', 'image/pjpeg', 'image/png'];
+  const allowedMimes = ['image/jpeg', 'image/jpg', 'image/png'];
   if (allowedMimes.includes(file.mimetype)) {
     cb(null, true);
   } else {

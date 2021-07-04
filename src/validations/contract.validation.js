@@ -62,7 +62,7 @@ const updateContractInfo = {
       platforms: Joi.array().items(Joi.string()),
       entries: Joi.object(),
     }),
-    signature: Joi.string(),
+    signature: Joi.string().required(),
   }),
 };
 
